@@ -26,6 +26,9 @@ export default function RoutineCalendarPage() {
     if (!user) return;
     getUserRoutines(user.uid).then((r) => {
       setRoutines(r);
+    }).catch((err) => {
+      console.error("Calendar load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

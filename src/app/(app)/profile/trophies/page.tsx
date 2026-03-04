@@ -17,6 +17,9 @@ export default function TrophiesPage() {
     if (!user) return;
     getGamificationProfile(user.uid).then((p) => {
       setProfile(p);
+    }).catch((err) => {
+      console.error("Trophies load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

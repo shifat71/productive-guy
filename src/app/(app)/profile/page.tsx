@@ -26,6 +26,9 @@ export default function ProfilePage() {
     ]).then(([gp, s]) => {
       if (gp) setProfile(gp);
       setStreaks(s);
+    }).catch((err) => {
+      console.error("Profile load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

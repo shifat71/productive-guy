@@ -47,6 +47,9 @@ export default function RoutineDetailPage({ params }: { params: Promise<{ id: st
     if (!user) return;
     getRoutine(id).then((r) => {
       setRoutine(r);
+    }).catch((err) => {
+      console.error("Routine load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user, id]);

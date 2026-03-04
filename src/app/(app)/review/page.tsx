@@ -30,6 +30,9 @@ export default function WeeklyReviewPage() {
     const end = format(weekEnd, "yyyy-MM-dd");
     getDaySummariesForRange(user.uid, start, end).then((s) => {
       setSummaries(s);
+    }).catch((err) => {
+      console.error("Review load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user, currentWeek]);

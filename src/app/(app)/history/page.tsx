@@ -30,6 +30,9 @@ export default function HistoryPage() {
       const map: Record<string, DaySummary> = {};
       s.forEach((sum) => (map[sum.date] = sum));
       setSummaries(map);
+    }).catch((err) => {
+      console.error("History load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user, currentMonth]);

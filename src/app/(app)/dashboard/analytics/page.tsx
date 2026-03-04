@@ -33,6 +33,9 @@ export default function AnalyticsPage() {
 
     getDaySummariesForRange(user.uid, startDate, endDate).then((s) => {
       setSummaries(s);
+    }).catch((err) => {
+      console.error("Analytics load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user, range]);

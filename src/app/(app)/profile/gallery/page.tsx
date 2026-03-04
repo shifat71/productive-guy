@@ -18,6 +18,9 @@ export default function GalleryPage() {
     if (!user) return;
     getUserCanvasCollectibles(user.uid).then((c) => {
       setCollectibles(c);
+    }).catch((err) => {
+      console.error("Gallery load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

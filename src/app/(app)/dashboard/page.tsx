@@ -42,6 +42,9 @@ export default function DashboardPage() {
       setActivityLogs(logs);
       setStreaks(s);
       if (gp) setProfile(gp);
+    }).catch((err) => {
+      console.error("Dashboard load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

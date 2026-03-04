@@ -65,9 +65,11 @@ export default function FocusModePage({ params }: { params: Promise<{ blockId: s
         }
       });
       setCompletedSlots(completed);
+    }).catch((err) => {
+      console.error("Focus load error:", err);
+    }).finally(() => {
+      setLoading(false);
     });
-
-    setLoading(false);
   }, [user, blockId]);
 
   const startPomodoro = useCallback(async (slotIndex: number) => {

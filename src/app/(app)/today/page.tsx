@@ -60,6 +60,9 @@ export default function TodayPage() {
         active = r.find((rt) => rt.activeDays.includes(dayOfWeek)) || r.find((rt) => rt.isDefault) || r[0] || null;
       }
       setActiveRoutine(active);
+    }).catch((err) => {
+      console.error("Today load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);

@@ -36,17 +36,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const loadProfile = async (u: User) => {
-    let profile = await getUserProfile(u.uid);
-    if (!profile) {
-      profile = await createUserProfile(
-        u.uid,
-        u.email || "",
-        u.displayName || "User",
-        u.photoURL || undefined
-      );
-      await createGamificationProfile(u.uid);
+    try {
+      let profile = await getUserProfile(u.uid);
+      if (!profile) {
+        profile = await createUserProfile(
+          u.uid,
+          u.email || "",
+          u.displayName || "User",
+          u.photoURL || undefined
+        );
+        await createGamificationProfile(u.uid);
+      }
+      setUserProfile(profile);
+    } catch (err) {
+      console.error("Failed to load/create user profile:", err);
     }
-    setUserProfile(profile);
   };
 
   useEffect(() => {

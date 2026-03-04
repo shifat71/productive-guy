@@ -33,6 +33,9 @@ export default function HistoryDatePage({ params }: { params: Promise<{ date: st
       setSummary(s);
       setLogs(l);
       setCheckIns(c);
+    }).catch((err) => {
+      console.error("History date load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user, date]);

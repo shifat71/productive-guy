@@ -22,6 +22,9 @@ export default function RoutinesPage() {
     if (!user) return;
     getUserRoutines(user.uid).then((r) => {
       setRoutines(r);
+    }).catch((err) => {
+      console.error("Routines load error:", err);
+    }).finally(() => {
       setLoading(false);
     });
   }, [user]);
